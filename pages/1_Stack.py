@@ -1,9 +1,10 @@
 import streamlit as st
+from structures.stack import Stack
 
 st.title("Stack Visualizer")
 
 if "stack" not in st.session_state:
-    st.session_state.stack = []
+    st.session_state.stack = Stack()
 
 value = st.number_input("Enter an Integer", step=1)
 
@@ -18,6 +19,8 @@ with col2:
         if st.session_state.stack:
             st.session_state.stack.pop()
 
+items = st.session_state.stack.get_items()
+
 st.subheader("Stack")
-for item in st.session_state.stack:
+for item in items:
     st.write(f"|{item} |")                    
