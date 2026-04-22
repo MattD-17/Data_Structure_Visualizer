@@ -12,7 +12,7 @@ col1, col2 = st.columns(2) # create two columns
 
 with col1:
     if st.button("Push"):
-        st.session_state.stack.append(int(value()))
+        st.session_state.stack.push(value)
 
 with col2:
     if st.button("Pop"):
