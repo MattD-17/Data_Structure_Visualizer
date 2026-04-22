@@ -23,4 +23,4 @@ items = st.session_state.stack.get_items()
 
 st.subheader("Stack")
 for item in items:
-    st.write(f"|{item} |")                    
+    st.write(f"| {item} |")                    
