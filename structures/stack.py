@@ -24,4 +24,4 @@ class Stack:
         return self.items[self.count]
 
     def get_items(self):
-        return self.items
+        return self.items[:self.count]

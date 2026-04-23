@@ -1,5 +1,6 @@
 import streamlit as st
 from structures.stack import Stack
+from utils.visualizer import draw_stack
 
 st.title("Stack Visualizer")
 
@@ -22,5 +23,5 @@ with col2:
 items = st.session_state.stack.get_items()
 
 st.subheader("Stack")
-for item in items:
-    st.write(f"| {item} |")                    
+fig = draw_stack(items, st.session_state.stack.max_size)
+st.plotly_chart(fig, width="stretch")             
