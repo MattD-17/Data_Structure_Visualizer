@@ -23,6 +23,10 @@ def draw_stack(items, max_size=10):
             x=0.5,
             y=i + 0.5,
             text=str(val),
+            font=dict(color="red",
+                    size=14,
+                    family="Arial"
+            ),
             showarrow=False
         )
 
@@ -43,5 +47,13 @@ def draw_stack(items, max_size=10):
         paper_bgcolor="white",
         plot_bgcolor="white"
     )
-
     return fig
+
+def draw_queue(items, max_size=10):
+    fig= go.Figure()
+    
+    fig.update_layout(
+        xaxis=dict(visible=false, range=[-1, 2]),
+        yaxis=dict(visible=false),
+        margin=dict(l=20,r=20,t=20,b=20)
+    )
