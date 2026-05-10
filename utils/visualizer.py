@@ -53,7 +53,54 @@ def draw_queue(items, max_size=10):
     fig= go.Figure()
     
     fig.update_layout(
-        xaxis=dict(visible=false, range=[-1, 2]),
-        yaxis=dict(visible=false),
+        xaxis=dict(visible=False, range=[-1, 2]),
+        yaxis=dict(visible=False),
         margin=dict(l=20,r=20,t=20,b=20)
     )
+
+    # draw each item
+    for i, val in enumerate(items):
+        # draw rectangle for each item
+        fig.add_shape(
+            type="rect",
+            x0=0,
+            y0= i,
+            x1= 1,
+            y1=i + 1
+        )
+
+        # print each item inside rectangle
+        fig.add_annotation(
+            x=0.5,
+            y=i + 0.5,
+            text=str(val),
+            font=dict(color="red",
+                    size=14,
+                    family="Arial"
+            ),
+            showarrow=False
+        )
+
+    # draw stack outline
+    fig.add_shape(
+    type="rect",
+    x0=0,
+    x1=1,
+    y0=0,
+    y1=max_size,
+    line=dict(dash="dash")
+    )
+
+    # create layout such that the whole stack is visible
+    fig.update_layout(
+        height=400,
+        xaxis=dict(visible=False),
+        yaxis=dict(visible=False, range=[0, max_size]),
+        margin=dict(l=20, r=20, t=20, b=20),
+        paper_bgcolor="white",
+        plot_bgcolor="white"
+    )
+    
+
+
+    return fig
