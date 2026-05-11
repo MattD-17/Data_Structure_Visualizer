@@ -10,6 +10,7 @@ class LinkedList:
         self.tail = tail
         self.value = value
         self.curr = curr
+        self.max_size = 10
 
     def create_node(self, new_value):
         new_node = Node() # instance of new node

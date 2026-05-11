@@ -1,5 +1,6 @@
 import streamlit as st
 from structures.linked_list import LinkedList
+from utils.visualizer import draw_linked_list
 
 st.title("Linked List Visualizer")
 
@@ -22,5 +23,6 @@ with col2:
 st.subheader("Linked List")
 numbers = st.session_state.linked_list.traverse_list()
 
-for num in numbers:
-    st.write(f"| {num} |")
+st.subheader("Linked List")
+fig = draw_linked_list(numbers, st.session_state.linked_list.max_size)
+st.plotly_chart(fig, width="stretch")
