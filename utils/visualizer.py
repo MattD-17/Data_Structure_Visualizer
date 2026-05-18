@@ -181,3 +181,52 @@ def draw_linked_list(linked_list, max_size):
     )    
 
     return fig    
+
+
+def draw_binary_tree(items, max_size):
+
+    fig = go.Figure()
+
+    # adjust layout to fit all nodes to be visible within figure layout
+    fig.update_layout(
+        xaxis=dict(visible=False, range=[-max_size*2, max_size*2]),
+        yaxis=dict(visible=False, range=[-max_size*2, 1]),
+        margin=dict(l=20, r=20, t=20, b=20)
+    )
+
+    tree_level = 0  # what level we are currently at
+    nodes_in_level = 1  # how many nodes in current level
+    level_start = 0 # the starting index for the current level
+
+    for i, item in enumerate(items):
+        
+        fig.add_shape(
+            type="rect",
+            x0=2*item.x,
+            x1=2*item.x + 1,
+            y0=2*item.y,
+            y1=2*item.y + 1
+        )
+
+        fig.add_annotation(
+            x=2*item.x+0.5,
+            y=2*item.y + 0.5,
+            text=str(item.value),
+            font=dict(color="red",
+                      size=14,
+                      family="Arial"
+            ),
+            showarrow=False
+        )
+
+
+    fig.update_layout(
+        height=400,
+        xaxis=dict(visible=False),
+        yaxis=dict(visible=False, range=[-max_size*2, 1]),
+        margin=dict(l=20, r=20, t=20, b=20),
+        paper_bgcolor="white",
+        plot_bgcolor="white"
+    )
+
+    return fig
