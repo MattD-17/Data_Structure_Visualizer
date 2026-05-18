@@ -183,7 +183,7 @@ def draw_linked_list(linked_list, max_size):
     return fig    
 
 
-def draw_binary_tree(items, max_size):
+def draw_binary_tree(items, edges, max_size):
 
     fig = go.Figure()
 
@@ -193,10 +193,6 @@ def draw_binary_tree(items, max_size):
         yaxis=dict(visible=False, range=[-max_size*2, 1]),
         margin=dict(l=20, r=20, t=20, b=20)
     )
-
-    tree_level = 0  # what level we are currently at
-    nodes_in_level = 1  # how many nodes in current level
-    level_start = 0 # the starting index for the current level
 
     for i, item in enumerate(items):
         
@@ -217,8 +213,23 @@ def draw_binary_tree(items, max_size):
                       family="Arial"
             ),
             showarrow=False
-        )
+        )   
 
+    for edge in edges:
+
+        fig.add_annotation(
+            x=2*edge.x_coords[1] + 0.5,
+            y=2*edge.y_coords[1] + 1,
+            ax=2*edge.x_coords[0] + 0.5,
+            ay=2*edge.y_coords[0],
+            xref="x", yref="y",
+            axref="x", ayref="y",
+            showarrow=True,
+            arrowhead=2,
+            arrowsize=1,
+            arrowwidth=1,
+            arrowcolor="red"
+        )    
 
     fig.update_layout(
         height=400,

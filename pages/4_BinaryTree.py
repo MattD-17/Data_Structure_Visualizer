@@ -22,6 +22,7 @@ with col1:
 
 
 items = st.session_state.binary_tree.get_tree()
+edges = st.session_state.binary_tree.get_edges()
 st.subheader("Binary Tree")
-fig = draw_binary_tree(items, st.session_state.binary_tree.max_nodes)
+fig = draw_binary_tree(items, edges, st.session_state.binary_tree.max_nodes)
 st.plotly_chart(fig, width="stretch")

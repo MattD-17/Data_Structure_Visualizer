@@ -8,11 +8,41 @@ class Node:
         self.x = x
         self.y = y
 
+class Edge:
+    def __init__(self, parent, child):
+        self.parent = parent
+        self.child = child
+
+    @property
+    def x_coords(self):
+        return [self.parent.x, self.child.x]
+    
+    @property
+    def y_coords(self):
+        return [self.parent.y, self.child.y]        
+
+    def get_coordinates(self):
+        return {
+            "x": [self.parent.x, self.child.x],
+            "y": [self.parent.y, self.child.y]
+        }
+
 class BinaryTree():
     def __init__(self, root=None):
         self.root = root
         self.count = 0
         self.max_nodes = 10
+        self.edges = []
+
+    def create_node(self, value):
+
+        if value != None:
+            newNode = Node(value)
+        if self.count >= self.max_nodes:
+            return    
+        self.count = self.count + 1   
+
+        return newNode
 
     def add_node(self, value):
 
@@ -36,6 +66,9 @@ class BinaryTree():
                 node.parent = current
                 current.left = node
 
+                edge = Edge(current, node)
+                self.edges.append(edge)
+
                 node.x = current.x - spacing  # move node to left of parent
                 node.y = current.y - 1  # move node below parent                     
             else:
@@ -47,23 +80,13 @@ class BinaryTree():
                 node.parent = current
                 current.right = node
 
+                edge = Edge(current, node)
+                self.edges.append(edge)
+
                 node.x = current.x + spacing
                 node.y = current.y - 1
             else:
                 self._insert_recursive(current.right, value, depth + 1)    
-
-
-
-    def create_node(self, value):
-
-        if value != None:
-            newNode = Node(value)
-
-        if self.count >= self.max_nodes:
-            return    
-        self.count = self.count + 1   
-
-        return newNode
 
     def delete(self, value):
         pass
@@ -81,7 +104,11 @@ class BinaryTree():
         return nodes   
 
     def get_tree(self):
-        return self.get_nodes(self.root)             
+        return self.get_nodes(self.root)    
+
+    def get_edges(self):
+        return self.edges    
+
 
 
 
